@@ -1,0 +1,49 @@
+#ok_consultant {
+    background: url('../images/noise.png') #686869;
+    repeat
+}
+
+#ok_con_web_chat {
+    left: -340px;
+    top: 20%;
+}
+
+#ok_consultant {
+    left: 0px;
+    top: 0%;
+}
+
+#ok_button {
+    right: 0px;
+    top: 50px;
+}
+
+.ok_online_button {
+    width: 30px;
+    height: 110px;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 0 10px 0px;
+    background: url('http://webconsult.tests.local/images/button/online_left.png') #808080 0px 0px no-repeat;
+}
+
+.ok_offline_button {
+    width: 30px;
+    height: 110px;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 0 10px 0px;
+    background: url('http://webconsult.tests.local/images/button/offline_left.png') #808080 0px 0px no-repeat;
+}
+
+.ok_autodialog_position {
+    position: absolute;
+    width: 19px;
+    height: 18px;
+    top: 30px;
+    left: -19px;
+    background: url('http://webconsult.tests.local/images/button/left.png') no-repeat;
+}
+
+#ok_autodialog_system {
+    top: 37%;
+    left: 40px;
+}

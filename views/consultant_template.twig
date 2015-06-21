@@ -1,0 +1,85 @@
+<script type="text/template" id="consultant_tmpl">
+			
+            <div id="ok_main">
+            <div id="ok_black_background" style="display: none;"></div>
+			<!-- Информация о операторе-->
+						<div id="operator_olya">
+							<div id="ok_close_chat">
+								<div class="ok_turn_off" title="Свернуть окно"></div>
+								<div id="ok_close" title="Закончить диалог"></div>
+							</div>
+							<div id="avatar_olya">
+								<img src="http://consultreal.tests.local/images/operator/no_image.jpg">
+							</div>
+                            <div id="name_olya">
+								<span id="ok_operator_name">Pavel!</span>
+								<span id="ok_operator_surname">Tretyakov!</span>
+							</div>
+							<div id="otdel">test</div>
+                                                        <div id="ok_sound" title="Нажмите, чтобы отключить звук" style="background-position: 0px 0px;"></div>
+														
+                                                        <div id="ok_tools">
+															<div id="ok_guest_name" class="ok_tools_class" title="Представиться"></div>
+                                                            <div id="ok_send_dialog" class="ok_tools_class" title="Отправить диалог на е-маил"></div>
+                                                            
+															<div id="ok_voting" class="ok_tools_class" title="Оценить консультацию"></div>
+															<div id="ok_load_file" class="ok_tools_class" title="Отправить файл консультанту"></div>
+															
+                                                        </div>
+						</div>
+                        <!-- Информация о операторе-->
+                        
+                     <div id="ok_padding">
+						<div id="masseg_olya" class="scroll-pane" style="overflow: hidden; padding: 0px; width: 317.333333253861px;">
+                        
+                                                    
+                                                
+						<div class="jspContainer" style="width: 317.333333253861px; height: 226.33333325386px;"><div class="jspPane" style="padding: 4px; top: 0px; width: 309px;"><div id="ok_messages_list"><div class="message_guest"><div class="message_guest_t"></div><div class="message_guest_s"><div class="message_guest_i"><div class="message_guest_n">Pavel</div><div class="message_guest_v">15:48:19</div></div>sdfsfsad</div><div class="message_guest_b"></div></div><div class="message_guest"><div class="message_guest_t"></div><div class="message_guest_s"><div class="message_guest_i"><div class="message_guest_n">Pavel</div><div class="message_guest_v">16:27:59</div></div>1234</div><div class="message_guest_b"></div></div><div class="message_operator"><div class="message_operator_t"></div><div class="message_operator_s"><div class="message_operator_i"><div class="message_operator_n">Pavel!</div><div class="message_operator_v">16:37:14</div></div><span>test</span></div><div class="message_operator_b"></div></div><div class="ok_system_message"><div class="x_line"></div><span>Консультант закончил с Вами чат</span></div></div><div id="ok_typing"><span>Pavel!</span> печатает...</div></div></div></div>
+						
+						<div id="masseg_olya_send">
+                                                    <textarea autofocus="" placeholder="Введите текст вашего сообщения..."></textarea>
+													<div id="ok_enter"></div>
+						</div>
+						
+						<div id="consultant_web"><span>онлайн-консультант от <a href="http://[***!!! ЗАМЕНИТЬ НА СВОЙ ДОМЕН !!!***]/" target="_blank" style="color: #1D93F0;">Web<span style="color: #FFF;">Consultant</span></a></span></div>
+					</div>
+
+					<div id="ok_send_mess_email" class="ok_windows">
+						<div id="ok_close_email" class="ok_close_window" title="Закрыть"></div>
+						<span>Отправить диалог на e-mail</span>
+						<div class="ok_window_center" id="ok_email_hide"><input type="text" id="ok_send_email" placeholder="Ваш e-mail"><div id="ok_enter_email" class="ok_button_grad"><img src="http://consultreal.tests.local/images/mess.png"></div></div>
+						<p id="ok_message_email"></p>
+					</div>
+					<div id="ok_introduce" class="ok_windows" style="display: none;">
+						<div id="ok_close_introduce" class="ok_close_window" title="Закрыть"></div>
+						<span>Представиться</span>
+						<div class="ok_window_center"><input type="text" id="ok_new_name" value=""><div id="ok_enter_name" class="ok_button_grad"><img src="http://consultreal.tests.local/images/name.png"></div></div>
+					</div>
+					<div id="ok_con_voting" class="ok_windows">
+						<div id="ok_close_voting" class="ok_close_window" title="Закрыть"></div>
+						<span style="margin-left: 25px;">Оцените консультацию</span>
+						<div class="ok_window_center">
+							<div class="ok_vot_arrow">
+								<div id="ok_voting_like" title="Понравилась" onclick="voting(1)"></div>
+								<div id="ok_voting_deslike" title="Не понравилась" onclick="voting(0)"></div>
+							</div>
+							
+						</div>
+						<p class="ok_vot_mess"></p>
+					</div>
+					<div id="ok_upload_file" class="ok_windows">
+						<div id="ok_close_file" class="ok_close_window" title="Закрыть"></div>
+						<span style="margin-left: 51px;">Загрузить файл</span>
+						<div id="uploadButton" class="button">
+							<div id="ok_change_file">Выбрать файл</div>
+							<div id="ok_file_img_hide" style="position: relative; top: 5px; left: 35px;display: none;"><img id="load" src="http://consultreal.tests.local/images/file.png"></div>
+						</div>
+					</div>
+						<input id="ok_user_name" type="hidden" value="Pavel">
+                        <audio id="mess_sound">
+                            <source src="http://consultreal.tests.local/audio/sound.ogg" type="audio/ogg; codecs=vorbis">
+                            <source src="http://consultreal.tests.local/audio/sound.mp3" type="audio/mpeg">
+                        </audio>
+            </div>			
+	</div></div>
+        </script> <!-- consultant tmpl -->

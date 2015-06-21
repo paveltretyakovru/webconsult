@@ -1,0 +1,874 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+    max-height: 100%;
+}
+body{
+    color: #000;
+    font-family: Tahoma, serif;
+    height: 100%;
+    max-height: 100%;
+    overflow-x: hidden;
+}
+#admin_panel_message{
+    display: none;
+    position: absolute;
+    width: 300px;
+    top: 35%;
+    left: 50%;
+    margin-left: -150px;
+    background-color: #000;
+    padding: 15px;
+    box-sizing: border-box;
+    opacity: 0.7;
+    z-index: 10;
+    border-radius: 3px;
+    box-shadow: 3px 3px 3px rgba(122, 122, 122, 0.7);
+    text-align: center;
+}
+#admin_panel_message span{
+    color: #fff;
+    font-size: 14px;
+    line-height: 14px;
+}
+#head{
+    float: left;
+    width: 100%;
+    height: 40px;
+    background: #272822;
+    color:#fff;
+    margin-bottom: -40px;
+    background: -moz-linear-gradient(top, #666, #222); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#666), color-stop(100%,#222));
+    background: -webkit-linear-gradient(top, #666, #222);
+    background: -o-linear-gradient(top, #666, #222);  
+    background: -ms-linear-gradient(top, #666, #222);
+    background: linear-gradient(top, #666, #222);
+}
+.logo{
+    display: block;
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+.logo span{
+    color: #1D93F0 !important;
+}
+#logout{
+    position: absolute;
+    background: #6685B3;
+    border: 1px solid #696969;
+    color: #FFFFFF;
+    padding: 5px;
+    top: 3px;
+    right: 10px;
+}
+#logout a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+#logout:hover{
+    background: #069;
+}
+#content{
+    float:left;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    padding-top: 40px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+#content_left{
+    float: left;
+    width: 13%;
+    height: 100%;
+    max-height: 100%;
+    background: #EEF1F3;
+    border-right: 1px solid #CCC; 
+}
+#content_left ul{
+    list-style: none;
+}
+#content_left ul a{
+    text-decoration: none;
+}
+#content_left ul li{
+    padding: 13px 0px 14px 35px;
+    border-bottom: 1px solid #CCC;
+    cursor: pointer;
+    color: #696969;
+    font-size: 13px;
+}
+#ok_otdel{
+    background: url('../images/ok_otdel.png') 3px 8px no-repeat;
+}
+#ok_add_consult{
+    background: url('../images/ok_add_consult.png') 3px 8px no-repeat;
+}
+#admin_settings{
+    background: url('../images/admin_settings.png') 3px 8px no-repeat;
+}
+#setting_auto_dialog{
+    background: url('../images/setting_auto_dialog.png') 3px 8px no-repeat;
+}
+#sistem_messages{
+    background: url('../images/sistem_messages.png') 3px 8px no-repeat;
+}
+#offline_form{
+    background: url('../images/offline_form.png') 3px 8px no-repeat;
+}
+#admin_black_list{
+    background: url('../images/admin_black_list.png') 3px 8px no-repeat;
+}
+#admin_dialod{
+    background: url('../images/admin_dialod.png') 3px 8px no-repeat;
+}
+#get_code{
+    background: url('../images/get_code.png') 3px 8px no-repeat;
+}
+#content_left ul li:hover{
+    background-color: #444;
+    color: #3EDED7;
+}
+.white_li{
+    position: relative;
+    background-color: #FFF !important;
+    left: 1px;
+    z-index: 10;
+    color: #696969 !important; 
+}
+#content_center{
+    float: left;
+    width: 69%;
+    background: #FFF;
+    height: 100%;
+    max-height: 100%;
+    padding: 0 15px 15px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+	overflow: auto;
+}
+#window_title{
+    font-size: 24px;
+    color: #91AAB8;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #999;
+    margin-top: 5px;
+}
+#content_right{
+    float: right;
+    width: 17%;
+    background: #EEF1F3;
+    height: 100%;
+    max-height: 100%;
+    border-left: 1px solid #AAA;
+    box-shadow: -1px 0px 6px #999;
+}
+#online_consulants{
+    width: 100%;
+    height: 50px;
+    background-color: #444;
+    color: #696969;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 17px;
+    height: 26px;
+    text-align: center;
+    font-family: "Helvetica", sans-serif;
+    border-bottom: 1px solid #859199;
+    background: #DFDFDF;
+    background: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.46, #DFDFDF), color-stop(0.98, #F1F1F1), color-stop(0.98, white));
+}
+#operators_in_online{
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 39px;
+}
+#operators_in_online span{
+    font-size: 13px;
+    font-family: "Helvetica", sans-serif;
+    color: #858585;
+    font-style: italic;
+}
+.operator_online{
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 7px 0px 7px 5px;
+    height: 50px;
+    border-bottom: 1px solid #CCC;
+    background: url('../images/op_online.gif') 96% 52% #F7F7F7 no-repeat;
+}
+.operator_online img {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin: 0px 5px;
+}
+.operators_list_name{
+    float: left;
+    margin-left: 2px;
+    font-size: 12px;
+    font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+    color: #61798B;
+    font-weight: bold;
+}
+.operators_list_otdel{
+    float: left;
+    margin-left: 2px;
+    font-size: 12px;
+    font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+    color: #61798B;
+}
+.close_windows{
+    display: none;
+}
+.get_code{
+    margin-top: 10px;
+    width: 80%;
+}
+.get_code p{
+    font-size: 13px;
+}
+.get_code textarea { 
+    height: 130px;
+    margin: 10px 0px;
+    width: 100%;
+    border: 1px solid #C6DCE3;
+    border-radius: 5px;
+    outline: medium none currentColor;
+    padding: 6px;
+    resize: none;
+    box-shadow: #D0D0D0 0px 0px 7px inset;
+}
+.setings_malsi{
+    margin: 20px 40px 0 20px;
+}
+.auto_label{
+    line-height: 20px;
+    font-size: 15px;
+    color: #363636;
+}
+
+.auto_info{
+    font-size: 13px;
+    color: #999;
+}
+.auto_settings{
+    width: 100%;
+    margin: 10px 0px;
+}
+.auto_settings textarea{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #C6DCE3;
+    border-radius: 3px;
+    outline: medium none currentColor;
+    padding: 5px;
+    resize: none;
+    box-shadow: #D0D0D0 0px 0px 3px inset;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+#w_sistem_messages textarea{
+    height: 30px;
+    
+}
+.malsi_h4{
+    float: left;
+    width: 100%;
+    font-size: 19px;
+    color: #91AAB8;
+    padding-top: 6px;
+    border-top: 1px solid #999;
+    margin: 5px 0;
+}
+.autodialog_url{
+
+}
+.autodialog_url input{
+    border: 1px solid #C6DCE3;
+    border-radius: 3px;
+    padding: 2px 3px;
+    outline: medium none currentColor;
+    box-shadow: #D0D0D0 0px 0px 5px inset;
+    width: 500px;
+    height: 16px;
+    padding: 5px;
+    font-size: 15px;
+}
+.autodialog_page{
+    float: left;
+    width: 100%;
+    padding: 5px;
+    background: #DEE4EE;
+    margin: 5px 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.autodialog_page_head{
+    
+    float: left;
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    cursor: pointer;
+}
+.autodialog_page_close{
+    display: none;
+    height: auto;
+}
+.dell_autodialog, .updata_autodialog, .dell_not_answer{
+    float: right;
+    font-size: 12px;
+    color: #1D93F0;
+    text-decoration: underline;
+    font-family: Arial;
+    margin-right: 10px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.setting_caption{
+    color: #363636;
+    font-size: 15px;
+    margin-bottom: 3px;
+    font-family: Arial;
+}
+#add_new_auto_page{
+    float: right;
+}
+#auto_settings_table{
+    font-size: 15px;
+    color: #363636;
+}
+#auto_settings_table input{
+    width: 30px;
+    border: 1px solid #C6DCE3;
+    border-radius: 3px;
+    padding: 2px 3px;
+    outline: medium none currentColor;
+    box-shadow: #D0D0D0 0px 0px 5px inset;
+    margin-left: 10px;
+}
+.save_settings{
+    float: left;
+    padding: 10px;
+    background: -moz-linear-gradient(top, #666, #444); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#666), color-stop(100%,#444));
+    background: -webkit-linear-gradient(top, #666, #444);
+    background: -o-linear-gradient(top, #666, #444);  
+    background: -ms-linear-gradient(top, #666, #444);
+    background: linear-gradient(top, #666, #444);
+    border-radius: 3px;
+    text-align: center;
+    width: 200px;
+    color: #FFF;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.save_settings:hover{
+    background: -moz-linear-gradient(top, #888, #666); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#888), color-stop(100%,#666));
+    background: -webkit-linear-gradient(top, #888, #666);
+    background: -o-linear-gradient(top, #888, #666);  
+    background: -ms-linear-gradient(top, #888, #666);
+    background: linear-gradient(top, #888, #666);
+}
+#w_offline_form{
+    width: 100%;
+}
+.email_input{
+    border: 1px solid #C6DCE3;
+    border-radius: 3px;
+    padding: 2px 3px;
+    outline: medium none currentColor;
+    box-shadow: #D0D0D0 0px 0px 3px inset;
+    margin-left: 10px;
+    width: 270px; 
+    height: 20px; 
+    padding: 7px; 
+    font-size: 17px;
+}
+#chat_position { 
+    background: -moz-linear-gradient(top, #EEE, #dedef7); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EEE), color-stop(100%,#dedef7));
+    background: -webkit-linear-gradient(top, #EEE, #dedef7);
+    background: -o-linear-gradient(top, #EEE, #dedef7);  
+    background: -ms-linear-gradient(top, #EEE, #dedef7);
+    background: linear-gradient(top, #EEE, #dedef7);
+    border: 3px solid #93ACBD;
+    float: left;
+    height: 200px;
+    position: relative;
+    width: 400px;
+}
+#chat_position span{
+    position: relative;
+    top: 42%;
+    font-size: 18px;
+    color: #4E6383;
+}
+.position_id { 
+    background: #7493C9;
+    cursor: pointer;
+    position: absolute;
+}
+#ok_left_center{
+        width: 20px;
+        height: 70px;
+        top: 35%;
+        left: 0;
+}
+#ok_right_center{
+        width: 20px;
+        height: 70px;
+        top: 35%;
+        right: 0;
+}
+#ok_top_center{
+        width: 70px;
+        height: 20px;
+        top: 0;
+        right: 43%;
+}
+#ok_bottom_center{
+        width: 70px;
+        height: 20px;
+        bottom: 0;
+        right: 43%;
+}
+#ok_bottom_right{
+        width: 70px;
+        height: 20px;
+        bottom: 0;
+        right: 0;
+}
+#ok_bottom_left{
+        width: 70px;
+        height: 20px;
+        bottom: 0;
+        left: 0;
+}
+#ok_top_left{
+        width: 70px;
+        height: 20px;
+        top: 0;
+        left: 0;
+}
+#ok_top_right{
+        width: 70px;
+        height: 20px;
+        top: 0;
+        right: 0;
+}
+.setting_left{
+        float: left;
+        width: 49%;
+}
+.setting_right{
+        float: left;
+        width: 49%;
+}
+
+.list_group{
+    width: 100%;
+    padding: 0px;
+    height: 40px;
+    background-color: #F4F6F9;
+    margin-top: 2px;
+}
+.list_group span{
+    float: left;
+    display: block;
+    width: 30%;
+    background: #DEE4EE;
+    padding: 9px;
+    color: #888;
+    font-size: 16px;
+    height: 22px;
+    margin-right: 20px;
+}
+
+select{
+    float: left;
+    padding-left: 5px;
+    font-size: 17px;
+    border: 1px solid #B3CDEE;
+    height: 28px;
+    width: 240px;
+}
+
+.list_group input{
+    float: left;
+    height: 24px;
+    width: 236px; 
+}
+.odel_margin{
+    float: left;
+    margin-top: 5px;
+}
+.qroup{
+    float: left;
+    padding: 5px;
+    border: 1px solid #999;
+    width: 130px;
+    text-align: center;
+    margin-left: 15px;
+    cursor: pointer;
+    color: #696969;
+    border-radius: 3px;
+    line-height: 15px;
+    font-size: 14px;
+    background: #DFDFDF;
+    background: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.46, #DFDFDF), color-stop(0.98, #F1F1F1), color-stop(0.98, white));
+    background: -moz-linear-gradient(top, #F1F1F1, #DFDFDF); 
+    background: -o-linear-gradient(top, #F1F1F1, #DFDFDF);  
+    background: -ms-linear-gradient(top, #F1F1F1, #DFDFDF);
+    background: linear-gradient(top, #F1F1F1, #DFDFDF);
+   
+}
+.qroup:hover{
+    background: #F1F1F1;
+    background: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.98, #DFDFDF), color-stop(0.46, #F1F1F1), color-stop(0.98, white));
+    background: -moz-linear-gradient(top, #DFDFDF, #F1F1F1); 
+    background: -o-linear-gradient(top, #DFDFDF, #F1F1F1);  
+    background: -ms-linear-gradient(top, #DFDFDF, #F1F1F1);
+    background: linear-gradient(top, #DFDFDF, #F1F1F1);
+}
+.add_new{
+    float: left;
+    width: 16px;
+    height: 16px;
+    background: url('../images/add_new.png') no-repeat;
+}
+.dell_qroup{
+    float: left;
+    width: 16px;
+    height: 16px;
+    background: url('../images/dell_group.png') no-repeat;
+}
+
+#add_new_qroup{
+
+}
+#panel_for_add_operator{
+    display: none;
+    float: left;
+    margin-top: 10px;
+    background: #FFF;
+    width: 100%;
+    
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 5px;
+}
+.add_operator_line{
+    float: left;
+    width: 100%;
+    height: 40px;
+    background: #E5EAEE;
+    margin-bottom: 2px;
+}
+.form_check_line{
+    float: left;
+    width: 100%;
+    height: 20px;
+    padding: 6px;
+    background: #E5EAEE;
+    margin-bottom: 5px;
+}
+.add_operator_line_left{
+    float: left;
+    width: 35%;
+    height: 20px;
+    background: #CED5E0;
+    padding: 10px;
+    font-size: 15px;
+    color: #333;
+}
+.add_operator_line_right{
+    float: left;
+    padding: 5px;
+    margin-left: 10px;
+}
+.add_operator_line_right input{
+    height: 25px;
+    padding-left: 4px;
+    box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px inset;
+    border-radius: 3px;
+    border: 1px solid #A5A5A5;
+}
+.add_operator{
+    position: relative;
+    float: left;
+    min-width: 210px;
+    height: 50px;
+    margin: 10px 0px 0px 10px;
+    padding: 5px;
+    border: 1px dashed #A5B8CF;
+    border-radius: 5px;
+    background: #FFF;
+    text-align: center;
+    cursor: pointer;
+    color: #CCC;
+}
+.add_operator span{
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.add_operator:hover{
+    border: 1px dashed #666;
+    color: #AAA !important;
+}
+.operator{
+    position: relative;
+    float: left;
+    min-width: 210px;
+    height: 50px;
+    margin: 10px 0px 0px 10px;
+    padding: 5px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    background: #DFDFDF;
+    background: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.46, #DFDFDF), color-stop(0.98, #F1F1F1));
+    background: -moz-linear-gradient(top, #F1F1F1, #DFDFDF); 
+    background: -o-linear-gradient(top, #F1F1F1, #DFDFDF);  
+    background: -ms-linear-gradient(top, #F1F1F1, #DFDFDF);
+    background: linear-gradient(top, #F1F1F1, #DFDFDF);
+    box-shadow: 1px 1px 3px #999;
+}
+.operator:hover{
+    border: 1px solid #696969;
+}
+.operator img{
+    width: 45px;
+    height: 50px;
+    float: left;
+    margin-right: 5px;
+}
+.head_panel_l{
+    float: left;
+}
+.op_name{
+    font-size: 13px;
+    font-weight: bold;
+    color: #61798B;
+}
+.op_group{
+    color: #61798B;
+    font-size: 12px;
+}
+.op_voting_like{
+    float: left;
+    width: 30px;
+    color: #3F6D3F;
+}
+.op_voting_deslike{
+    float: left;
+    width: 30px;
+    color: #B86666;
+}
+.del_operator{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    background: url('../images/dell_group.png') no-repeat;
+    cursor: pointer;
+}
+
+.black_list{
+    float: left;
+    width: 100%;
+    height: 25px;
+    background: #E5EAEE;
+    margin-top: 2px;
+}
+.ip_black_list{
+    float: left;
+    width: 25%;
+    height: 17px;
+    padding: 4px;
+    background: #CED5E0;
+    font-size: 13px;
+    color: #42505F;
+}
+.time_black_list{
+    float: left;
+    padding: 4px;
+    height: 15px;
+    margin-left: 10px;
+    width: 30%;
+    font-size: 13px;
+    color: #42505F;
+}
+.dell_black_list{
+    float: right;
+    width: 16px;
+    height: 16px;
+    background: url('../images/dell_group.png') no-repeat;
+    cursor: pointer;
+    margin: 3px 5px;
+}
+#not_in_blacklist{
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 17px;
+}
+#admin_dialod_panel{
+    margin-top: 10px;
+    border-bottom: 1px solid #BBB;
+    font-size: 14px;
+    box-shadow: 0 1px 2px #C7C7C7;
+}
+#admin_dialod_panel input{
+    padding: 4px;
+    width: 120px;
+}
+#admin_dialod_panel select{
+    float: none;
+    width: 50px;
+    padding-left: 3px;
+}
+#for_date{
+    float: left;
+    width: 40%;
+    padding: 6px 10px;
+}
+#for_date span{
+    font-weight: bold;
+    color: #777;
+    margin-right: 3px;
+}
+#to_date{
+    float: left;
+    width: 38%;
+    padding: 6px 10px;
+}
+#dialog_search{
+    float: left;
+    width: 12%;
+    margin: 5px 10px;
+    padding: 6px;
+    line-height: 16px;
+
+    background: -moz-linear-gradient(top, #666, #444); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#666), color-stop(100%,#444));
+    background: -webkit-linear-gradient(top, #666, #444);
+    background: -o-linear-gradient(top, #666, #444);  
+    background: -ms-linear-gradient(top, #666, #444);
+    background: linear-gradient(top, #666, #444);
+    border-radius: 3px;
+    text-align: center;
+    color: #FFF;
+    cursor: pointer;
+}
+#dialog_search:hover{
+    background: -moz-linear-gradient(top, #888, #666); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#888), color-stop(100%,#666));
+    background: -webkit-linear-gradient(top, #888, #666);
+    background: -o-linear-gradient(top, #888, #666);  
+    background: -ms-linear-gradient(top, #888, #666);
+    background: linear-gradient(top, #888, #666);
+}
+#users_dialog_lst{
+    float: left;
+    width: 100%;
+}
+.user_dialog{
+    float: left;
+    width: 100%;
+    height: 25px;
+    padding: 4px;
+    background: #FCFDFD;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    cursor: pointer;
+    color: #555;
+    font-size: 13px;
+    border-bottom: 1px solid #EEE;
+}
+.user_dialog b{
+    margin: 0 5px;
+}
+.user_dialog:hover{
+    background: #EEE;
+}
+.user_dialog_name{
+    float: left;
+    width: 25%;
+}
+.user_dialog_date{
+    float: left;
+    width: 35%;
+}
+.user_dialog_ip{
+    float: left;
+    width: 25%;
+}
+#user_dialog_story{
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: 450px;
+    height: 500px;
+    left: 50%;
+    top: 15%;
+    margin-left: -250px;
+    background: #E9ECEE;
+    border: 5px solid #2F5272;
+    box-shadow: 0.3em 0.3em 5px rgba(122, 122, 122, 0.3);
+}
+#user_dialog_story_header{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 25px;
+    width: 100%;
+    background: #2F5272;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFF;
+}
+#user_dialog_story_close{
+    position: absolute;
+    right: 3px;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+    background: url('../images/dell_group.png') no-repeat;
+    cursor: pointer;
+}
+#user_dialog_story_list{
+    overflow-y: auto;
+    padding: 10px;
+    width: 100%;
+    height: 450px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+#add_new_sistem_messages{
+    float: right;
+}
+.s_m_after{
+    color: #999; 
+    margin: 2px 0 10px 0; 
+    font-size: 13px;
+}

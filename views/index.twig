@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web-consultant</title>
+        
+        <link type="text/css" rel="stylesheet" href="{{ asset('') }}css/settings.css" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('') }}css/chat.css" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('') }}css/scroll.css" />
+
+    </head>
+    <body>
+
+        <div id="ok_con_web_chat">
+            <div id="ok_button"></div>
+            <div id="ok_consultant">
+            	
+				<div id="iframe"></div>
+
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="{{ asset('') }}js/libs/jquery.js"></script>
+        <script type="text/javascript" src="{{ asset('') }}js/libs/scroll.js"></script>
+        <script type="text/javascript" src="{{ asset('') }}js/libs/cookie.js"></script>
+        <script type="text/javascript" src="{{ asset('') }}js/libs/mousewheel.js"></script>
+        <script type="text/javascript" src="{{ asset('') }}js/system/consultant.js"></script>
+        <script type="text/javascript" src="{{ asset('') }}js/system/chat.js"></script>
+        <script type="text/javascript" src="{{ asset('') }}js/system/system.js"></script>
+
+        {% include 'autodialog_template.twig' %}
+        {% include 'offline_template.twig' %}
+        {% include 'consultant_template.twig' %}
+        {% include 'loading_template.twig' %}
+        {% include 'writeus_template.twig' %}			
+                            
+	</body>
+</html>
