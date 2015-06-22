@@ -16,8 +16,10 @@
 
     "autoload":{
         "psr-0":{
-            "App"        : "" ,
-            "App\\Controllers" : "App"
+            "App"               : "" ,
+            "App\\Controllers"  : "App" ,
+            "App\\Models"       : "App" ,
+            "App\\Remotes"      : "App"
         }
     }
 }
