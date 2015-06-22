@@ -9,7 +9,7 @@
 								<div id="ok_close" title="Закончить диалог"></div>
 							</div>
 							<div id="avatar_olya">
-								<img src="http://consultreal.tests.local/images/operator/no_image.jpg">
+								<img src="{{ asset('') }}images/operator/no_image.jpg">
 							</div>
                             <div id="name_olya">
 								<span id="ok_operator_name">Pavel!</span>
@@ -47,13 +47,13 @@
 					<div id="ok_send_mess_email" class="ok_windows">
 						<div id="ok_close_email" class="ok_close_window" title="Закрыть"></div>
 						<span>Отправить диалог на e-mail</span>
-						<div class="ok_window_center" id="ok_email_hide"><input type="text" id="ok_send_email" placeholder="Ваш e-mail"><div id="ok_enter_email" class="ok_button_grad"><img src="http://consultreal.tests.local/images/mess.png"></div></div>
+						<div class="ok_window_center" id="ok_email_hide"><input type="text" id="ok_send_email" placeholder="Ваш e-mail"><div id="ok_enter_email" class="ok_button_grad"><img src="{{ asset('') }}images/mess.png"></div></div>
 						<p id="ok_message_email"></p>
 					</div>
 					<div id="ok_introduce" class="ok_windows" style="display: none;">
 						<div id="ok_close_introduce" class="ok_close_window" title="Закрыть"></div>
 						<span>Представиться</span>
-						<div class="ok_window_center"><input type="text" id="ok_new_name" value=""><div id="ok_enter_name" class="ok_button_grad"><img src="http://consultreal.tests.local/images/name.png"></div></div>
+						<div class="ok_window_center"><input type="text" id="ok_new_name" value=""><div id="ok_enter_name" class="ok_button_grad"><img src="{{ asset('') }}images/name.png"></div></div>
 					</div>
 					<div id="ok_con_voting" class="ok_windows">
 						<div id="ok_close_voting" class="ok_close_window" title="Закрыть"></div>
@@ -72,13 +72,13 @@
 						<span style="margin-left: 51px;">Загрузить файл</span>
 						<div id="uploadButton" class="button">
 							<div id="ok_change_file">Выбрать файл</div>
-							<div id="ok_file_img_hide" style="position: relative; top: 5px; left: 35px;display: none;"><img id="load" src="http://consultreal.tests.local/images/file.png"></div>
+							<div id="ok_file_img_hide" style="position: relative; top: 5px; left: 35px;display: none;"><img id="load" src="{{ asset('') }}images/file.png"></div>
 						</div>
 					</div>
 						<input id="ok_user_name" type="hidden" value="Pavel">
                         <audio id="mess_sound">
-                            <source src="http://consultreal.tests.local/audio/sound.ogg" type="audio/ogg; codecs=vorbis">
-                            <source src="http://consultreal.tests.local/audio/sound.mp3" type="audio/mpeg">
+                            <source src="{{ asset('') }}audio/sound.ogg" type="audio/ogg; codecs=vorbis">
+                            <source src="{{ asset('') }}audio/sound.mp3" type="audio/mpeg">
                         </audio>
             </div>			
 	</div></div>

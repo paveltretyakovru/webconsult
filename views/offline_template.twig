@@ -5,7 +5,7 @@
     position: relative;
     width: 100%;
     height: 355px;
-    background: url('http://consultreal.tests.local/images/form_background.png') #777 repeat;
+    background: url('{{ asset('') }}images/form_background.png') #777 repeat;
     color: #000;
     box-shadow: 0.2em 0.2em 4px rgba(122, 122, 122, 0.5);
     }
@@ -35,7 +35,7 @@
     width: 60px;
     height: 73px;
     border: 2px solid #FFF;
-    background: url('http://consultreal.tests.local/images/form_cons_img.png') no-repeat;
+    background: url('{{ asset('') }}images/form_cons_img.png') no-repeat;
     box-shadow: 2px 2px 3px #333;
     }
     .ok_form_info{
@@ -154,7 +154,7 @@
     background-color: #C0C0C0;
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
-    background: url('http://consultreal.tests.local/images/gradient-form.png') 0 0 repeat-x;
+    background: url('{{ asset('') }}images/gradient-form.png') 0 0 repeat-x;
     }
     .img_class img{
     border: none;
@@ -215,9 +215,9 @@
         </div>
         <div id="ok_forma">
             <form id="consult_form" action="form.php" method="post">
-                <div class="ok_field"><input id="consult_mail" type="text" name="sendform_mail" value="Ваш E-Mail" /><span class="img_class" id="ok_email"><img src="http://consultreal.tests.local/images/web.png" /></span></div>
-                <div class="ok_field"><input id="consult_name" type="text" name="sendform_name" value="Ваше имя" /><span class="img_class" id="ok_name"><img src="http://consultreal.tests.local/images/user.png" /></span></div>
-                <div class="ok_field"><input id="consult_tel" type="text" name="sendform_tell" value="Ваш телефон" /><span class="img_class" id="ok_tel"><img src="http://consultreal.tests.local/images/mobile.png" /></span></div>
+                <div class="ok_field"><input id="consult_mail" type="text" name="sendform_mail" value="Ваш E-Mail" /><span class="img_class" id="ok_email"><img src="{{ asset('') }}images/web.png" /></span></div>
+                <div class="ok_field"><input id="consult_name" type="text" name="sendform_name" value="Ваше имя" /><span class="img_class" id="ok_name"><img src="{{ asset('') }}images/user.png" /></span></div>
+                <div class="ok_field"><input id="consult_tel" type="text" name="sendform_tell" value="Ваш телефон" /><span class="img_class" id="ok_tel"><img src="{{ asset('') }}images/mobile.png" /></span></div>
                 <textarea id="consult_text" name="sendform_text">Текст вашего сообщения</textarea>
                 <div id="ok_submit" class="ok_button button-green">Отправить</div>
                 <div id="ok_close_chat">

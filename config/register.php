@@ -3,6 +3,7 @@
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler;
 use \Igorw\Silex\ConfigServiceProvider;
 use App\Controllers\ConsultantsController;
+use App\Controllers\ChatController;
 
 
 # Регистрируем главное приложение
@@ -62,4 +63,9 @@ $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 # Контроллер консультантов
 $app['consultants.controller'] = $app->share(function() use ($app) {
     return new ConsultantsController($app);
+});
+
+# Контроллер чатов
+$app['chat.controller'] = $app->share(function() use ($app) {
+    return new ChatController($app);
 });

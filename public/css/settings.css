@@ -23,7 +23,7 @@
     height: 110px;
     border-radius: 0 5px 5px 0;
     padding: 10px 0 10px 0px;
-    background: url('http://webconsult.tests.local/images/button/online_left.png') #808080 0px 0px no-repeat;
+    background: url('../images/button/online_left.png') #808080 0px 0px no-repeat;
 }
 
 .ok_offline_button {
@@ -31,7 +31,7 @@
     height: 110px;
     border-radius: 0 5px 5px 0;
     padding: 10px 0 10px 0px;
-    background: url('http://webconsult.tests.local/images/button/offline_left.png') #808080 0px 0px no-repeat;
+    background: url('../images/button/offline_left.png') #808080 0px 0px no-repeat;
 }
 
 .ok_autodialog_position {
@@ -40,7 +40,7 @@
     height: 18px;
     top: 30px;
     left: -19px;
-    background: url('http://webconsult.tests.local/images/button/left.png') no-repeat;
+    background: url('../images/button/left.png') no-repeat;
 }
 
 #ok_autodialog_system {
