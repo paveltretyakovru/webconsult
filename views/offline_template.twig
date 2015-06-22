@@ -210,15 +210,15 @@
             <div id="ok_form_img">
             </div>
             <div id="ok_form_mess">
-                <p id="noconsult_mess"></p>
+                <p id="noconsult_mess"><%= offline_message %></p>
             </div>
         </div>
         <div id="ok_forma">
-            <form id="consult_form" action="form.php" method="post">
-                <div class="ok_field"><input id="consult_mail" type="text" name="sendform_mail" value="Ваш E-Mail" /><span class="img_class" id="ok_email"><img src="{{ asset('') }}images/web.png" /></span></div>
-                <div class="ok_field"><input id="consult_name" type="text" name="sendform_name" value="Ваше имя" /><span class="img_class" id="ok_name"><img src="{{ asset('') }}images/user.png" /></span></div>
-                <div class="ok_field"><input id="consult_tel" type="text" name="sendform_tell" value="Ваш телефон" /><span class="img_class" id="ok_tel"><img src="{{ asset('') }}images/mobile.png" /></span></div>
-                <textarea id="consult_text" name="sendform_text">Текст вашего сообщения</textarea>
+            <form id="consult_form" action="#" method="post">
+                <div class="ok_field"><input id="consult_mail" type="text" name="email" placeholder="Ваш E-Mail" /><span class="img_class" id="ok_email"><img src="{{ asset('') }}images/web.png" /></span></div>
+                <div class="ok_field"><input id="consult_name" type="text" name="name" placeholder="Ваше имя" /><span class="img_class" id="ok_name"><img src="{{ asset('') }}images/user.png" /></span></div>
+                <div class="ok_field"><input id="consult_tel" type="text" name="phone" placeholder="Ваш телефон" /><span class="img_class" id="ok_tel"><img src="{{ asset('') }}images/mobile.png" /></span></div>
+                <textarea id="consult_text" name="message" placeholder="Текст вашего сообщения"></textarea>
                 <div id="ok_submit" class="ok_button button-green">Отправить</div>
                 <div id="ok_close_chat">
                     <div id="ok_turn_off">Закрыть окно</div>

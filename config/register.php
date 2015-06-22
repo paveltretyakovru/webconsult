@@ -4,6 +4,8 @@ use Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler;
 use \Igorw\Silex\ConfigServiceProvider;
 use App\Controllers\ConsultantsController;
 use App\Controllers\ChatController;
+use App\Controllers\UsersController;
+use App\Controllers\TasksController;
 
 
 # Регистрируем главное приложение
@@ -36,7 +38,7 @@ $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 # Регестрируем PDO
-$app['pdo.dsn'] = 'mysql:dbname=consult';
+$app['pdo.dsn'] = 'mysql:host=localhost;dbname=webconsult;charset=utf8';
 $app['pdo.user'] = 'consult';
 $app['pdo.password'] = 'consult123';
 
@@ -55,6 +57,8 @@ $app['pdo'] = $app->share(function () use ($app) {
     );
 });
 
+$app['pdo']->exec("SET NAMES = utf8");
+
 /**
  * Регестрируем контроллеры
  */
@@ -68,4 +72,14 @@ $app['consultants.controller'] = $app->share(function() use ($app) {
 # Контроллер чатов
 $app['chat.controller'] = $app->share(function() use ($app) {
     return new ChatController($app);
+});
+
+# Регестрируем узерский контроллер
+$app['users.controller'] = $app->share(function() use ($app) {
+    return new UsersController($app);
+});
+
+# Регестрируем узерский контроллер
+$app['tasks.controller'] = $app->share(function() use ($app) {
+    return new TasksController($app);
 });

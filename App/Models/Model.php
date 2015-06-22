@@ -6,5 +6,7 @@ namespace App\Models;
 */
 class Model
 {
-	
+	public function __construct($app){
+		$this->app = $app;
+	}	
 }

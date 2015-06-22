@@ -5,21 +5,31 @@
     </div>
     <div id="ok_group_center">
         <h4 class="ok_group_h4">Задать вопрос консультанту</h4>
+        
+        <form>
+
         <div id="ok_user_name_input">
-            <input type="text" id="ok_group_user_name" value="Ваше имя">
+            <input type="text" id="ok_group_user_name" placeholder="Ваше имя" name="name">
         </div>
-        <div id="ok_group_select">
-            <div class="ok_select_background">
-                <span>Выберите отдел</span>
+        
+        {#
+            <div id="ok_group_select">
+                <div class="ok_select_background">
+                    <span>Выберите отдел</span>
+                </div>
+                <ul id="ok_select_select">
+                </ul>
             </div>
-            <ul id="ok_select_select">
-            </ul>
-        </div>
+        #}
+
         <div id="ok_group_text">
-            <textarea id="ok_group_textarea" placeholder="Введите текст вашего сообщения..."></textarea>
+            <textarea id="ok_group_textarea" placeholder="Введите текст вашего сообщения..." name="message"></textarea>
         </div>
+
+        </form>
+
         <div id="ok_group_message"></div>
-        <div id="ok_group_submit" class="ok_button button-green"><span>Отправить</span></div>
+        <div id="ok_writeus_submit" class="ok_button button-green"><span>Отправить</span></div>
     </div>
 </div>
 </script>

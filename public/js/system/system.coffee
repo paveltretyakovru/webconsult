@@ -7,9 +7,18 @@ window.App =
 	InitViews 		: {}
 	InitCollections	: {}
 
+	Helpers 		: {}
+
 # Создаем модель чата
 App.Models.Chat = Backbone.Model.extend
-	urlRoot : '/consultants'
+	urlRoot : '/consultants' ,
+	
+	defaults :
+		configs : {}
+	
+	initialize : ->
+		@configs = chat_configs
+		console.log @configs
 
 # Создаем представление чата
 App.Views.Chat = Backbone.View.extend
@@ -20,8 +29,13 @@ App.Views.Chat = Backbone.View.extend
 	client 		: {}				# Данные пользователя \
 	status 		: 'offline'			# Статус чата
 	consults 	: 0					# Количество консультантов онлайн
+	configs 	: {}				# Параметры чата
 
 	initialize 	: ->
+		@model.bind 'change:configs' , -> 
+			@configs = @model.get 'configs'
+			console.log @configs
+
 		console.log 'init view chat'	
 		@updateSystem()
 		# Запускаем сокеты
@@ -32,13 +46,13 @@ App.Views.Chat = Backbone.View.extend
 		# Регестрируем
 		@socket 	= io 'http://127.0.0.1:1337'
 		
-		# Отравеляем запросы
-		@socket.emit 'addClient'
-		
-		############### Ставим прослушки ###################
-		@socket.on 	'takeCountConsultants' , (data) =>
-			@takeCountConsultants data
-		###################################################
+		############### Отравеляем запросы #################
+		@socket.emit 'addClient' , cookie_id : cookie_id
+		####################################################
+
+		############### Ставим прослушки сокет-событий ###################
+		@socket.on 'takeCountConsultants'   , (data) => @takeCountConsultants 	data	# Получаем количество консультантов онлайн		
+		##################################################################
 
 	# Получаем от ноды количество консультантов онлайн
 	takeCountConsultants : (data) ->
@@ -64,6 +78,7 @@ App.Views.Chat = Backbone.View.extend
 		else
 			# Если есть консультанты
 			@switchChatButton 1	# В любом случае включаем лампочку на конпке
+			@status = 'writeus'
 
 
 	switchChatButton : (command) ->
@@ -77,18 +92,25 @@ App.Views.Chat = Backbone.View.extend
 			@$ok.addClass 'ok_offline_button'
 
 	events :
-		'click #ok_button' 	: 	'okClick'	# Открыть / закрыть панель чата
-		'click #ok_submit'	:	'okSubmit'
+		'click #ok_button' 			: 	'okClick'		# Открыть / закрыть панель чата
+		'click #ok_submit'			:	'offlineSubmit'	# Отправка оффлайн формы
+		'click #ok_writeus_submit' 	: 	'writeUsSubmit'	# Отправка вопроса консультантам
 
-	# Отправка offline сообщения
-	okSubmit : (e) ->
+	# Отправка вопроса консультантам (шаблон writeus_template.twig)
+	writeUsSubmit : (e) ->
+		console.log 'Отправка вопроса консультантам'
+
+	# Отправка offline сообщения (шаблон offline_template.twig)
+	offlineSubmit : (e) ->
 		# Получаем данные оффлайн формы
 		$element = $ e.currentTarget
-		$form 	= $element.parent 'form'
-		data 	= JSON.stringify $form.serializeArray()
+		$form 	 = $element.parent 'form'
+		data 	 = $form.serializeObject()
 
+		console.log 'Отправляем новое задание' , data
 		
-		console.log data
+		#### Отправляем данные формы по сокету ####
+		@socket.emit 'takeOfflineTask' , data
 
 	okClick : ->
 		if @open
@@ -101,6 +123,8 @@ App.Views.Chat = Backbone.View.extend
 	showChat : () ->
 		ok_position = 'ok_left_center'		
 		template 	= $('#' + @status + '_tmpl').html()
+
+		template = App.Helpers.Template template , @model.configs
 
 		$('#iframe').html template
 
@@ -133,30 +157,20 @@ App.InitViews.Chat 	= new App.Views.Chat
 	model : App.InitModels.Chat	
 ################################ TMP DATA ##############################
 
-# Отображение кнопки онлайн
-#$('#ok_button').addClass 'ok_online_button'
-# Отображение кнопки онлайн
-#$('#ok_button').addClass 'ok_offline_button'
+################################ HELPERS FUNCTIONS #####################
+# Рендерит шаблоны с объектами
+App.Helpers.Template = (tmpl , obj) ->
+	template = _.template tmpl
+	template obj
 
-showChat = (tmpl_name) ->
-	ok_position = 'ok_left_center'
-	template 	= $('#' + tmpl_name).html()
-
-	$('#iframe').html template
-
-	$('#ok_consultant').css 'display' , 'block'
-	switch ok_position
-		when 'ok_left_center'
-			$('#ok_con_web_chat').animate
-				'left': '0'
-			, 250
-
-hideChat = () ->
-	ok_position = 'ok_left_center'
-
-	switch ok_position
-		when 'ok_left_center'
-			$('#ok_con_web_chat').animate
-				'left': '-340px'
-			, 450 , ->
-				$('#ok_consultant').css 'display', 'none'
+$.fn.serializeObject = ->
+	o = {}
+	a = @serializeArray()
+	$.each a , ->
+		if o[@name] != undefined
+			if !o[@name].push
+				o[@name] = [o[@name]]
+			o[@name].push @value || ''
+		else
+			o[@name] = @value || ''
+	o
