@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use App\Controllers\Controller;
+use App\Models\Task;
 
 /**
 * Контроллер для управления задачаи
@@ -10,6 +11,15 @@ use App\Controllers\Controller;
 class TasksController extends Controller
 {
 	public function store(Request $request){
-		return "Hello from store task ^_^" . $request->get('message');
+		$Task = new Task($this->app);
+
+		$data = [
+			'name' 		=> $request->get('name'),
+			'phone' 	=> $request->get('phone'),
+			'message' 	=> $request->get('message'),
+			'ip'		=> $request->get('ip')
+		];
+
+		return $Task->insert($data);
 	}
 }

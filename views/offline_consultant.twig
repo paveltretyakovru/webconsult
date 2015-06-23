@@ -1,0 +1,27 @@
+<h3>Сообщения полученные в оффлайн</h3>
+
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+		<th>Статус</th>
+		<th>Дата</th>
+		<th>Имя</th>
+		<th>Телефон</th>
+		<th>Сообщение</th>
+		<th>Действие</th>
+		</tr>
+	</thead>
+
+	{% for task in tasks %}
+	    <tr>
+	    	<td>{{ task['status'] }}</td>
+	    	<td>{{ task['date'] }}</td>
+	    	<td>{{ task['name'] }}</td>
+	    	<td>{{ task['phone'] }}</td>
+	    	<td>{{ task['message'] }}</td>
+	    	<td>
+	    		<a class="label label-danger">Удалить</a>
+	    	</td>
+	    </tr>
+	{% endfor %}
+</table>

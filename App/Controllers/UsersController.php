@@ -18,21 +18,21 @@ class UsersController extends Controller
 	public function index(){
 
 		$chat_configs 	= $this->app['chat.controller']->getConfigs(true);
-		$cookie_id 		= $this->controllCookie();
+		$ip 		= $this->controllCookie();
 
-		return $this->app['twig']->render('index.twig' , compact('chat_configs' , 'cookie_id'));
+		return $this->app['twig']->render('index.twig' , compact('chat_configs' , 'ip'));
 	}
 
 	/**
 	 * Устанавливаем печеньки у пользователя
 	 */
 	private function controllCookie(){
-		if(!isset($_COOKIE['cookie_id'])){
+		if(!isset($_COOKIE['ip'])){
 			$cookie_id = $this->generatePassword(15);
-			setcookie('cookie_id' , $cookie_id , time()+60*60*24*60 , '/'); # 60 дней
+			setcookie('ip' , $cookie_id , time()+60*60*24*60 , '/'); # 60 дней
 			return $cookie_id;
 		}else{
-			return $_COOKIE['cookie_id'];
+			return $_COOKIE['ip'];
 		}
 	}
 }

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Models\Consultant;
+use App\Models\Task;
 use App\Remotes\ConsultantRemote;
 
 /**
@@ -17,8 +18,12 @@ class ConsultantsController extends Controller
 	 * Открываем панель консультанта
 	 * @return twig template
 	 */
-	public function panel(){
-		return $this->app['twig']->render('consultant.twig');
+	public function index(){
+		$Task 	= new Task($this->app);
+
+		$tasks 	= $Task->selectAll();
+
+		return $this->app['twig']->render('consultant.twig' , compact('tasks'));
 	}
 	
 	/**

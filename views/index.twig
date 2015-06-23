@@ -31,7 +31,7 @@
         <!-- System includes -->
         <script type="text/javascript">
             var chat_configs = {{ chat_configs|raw }}
-            var cookie_id    = "{{ cookie_id }}"
+            window.ip    = "{{ ip }}"
         </script>
 
         <script type="text/javascript" src="{{ asset('') }}js/libs/underscore.js"></script>
@@ -43,7 +43,7 @@
         {% include 'offline_template.twig' %}
         {% include 'consultant_template.twig' %}
         {% include 'loading_template.twig' %}
-        {% include 'writeus_template.twig' %}			
+        {% include 'writeus_template.twig' %}
                             
 	</body>
 </html>

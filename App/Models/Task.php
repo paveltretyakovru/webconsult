@@ -9,4 +9,6 @@ use App\Models\Model;
 class Task extends Model
 {
 	
+
+	public $table 		= 'tasks';	
 }
