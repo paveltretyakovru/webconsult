@@ -29,11 +29,13 @@ App.Views.Chat = Backbone.View.extend({
   status: 'offline',
   consults: 0,
   configs: {},
+  ip: '',
   initialize: function() {
     this.model.bind('change:configs', function() {
       this.configs = this.model.get('configs');
       return console.log(this.configs);
     });
+    this.ip = ip;
     console.log('init view chat');
     this.updateSystem();
     return this.registerSocket();
@@ -41,15 +43,32 @@ App.Views.Chat = Backbone.View.extend({
   registerSocket: function() {
     console.log("Initialize socket");
     this.socket = io('http://127.0.0.1:1337');
-    this.socket.emit('addClient', {
-      cookie_id: cookie_id
+    this.socket.on('disconnect', function() {
+      return console.error('ОТКЛЮЧИЛСЯ!');
     });
-    return this.socket.on('takeCountConsultants', (function(_this) {
+    this.socket.on('reconnect', (function(_this) {
+      return function() {
+        _this.socket.emit('addClient', {
+          ip: ip
+        });
+        return console.info('Успешно переподключение к соккету');
+      };
+    })(this));
+    this.socket.emit('addClient', {
+      ip: ip
+    });
+    this.socket.on('takeCountConsultants', (function(_this) {
       return function(data) {
         return _this.takeCountConsultants(data);
       };
     })(this));
+    return this.socket.on('chatStatusMessage', (function(_this) {
+      return function(data) {
+        return _this.takeChatStatusMessage(data);
+      };
+    })(this));
   },
+  takeChatStatusMessage: function(data) {},
   takeCountConsultants: function(data) {
     var count;
     console.info('Получили количество консультантов', data);

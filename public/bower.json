@@ -1,0 +1,20 @@
+{
+  "name": "lptracker-consultant",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ptretyakov/webconsult",
+  "authors": [
+    "Pavel Tretyakov <tretjakov.pavel@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "backbone": "~1.2.1"
+  }
+}

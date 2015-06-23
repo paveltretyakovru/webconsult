@@ -30,11 +30,15 @@ App.Views.Chat = Backbone.View.extend
 	status 		: 'offline'			# Статус чата
 	consults 	: 0					# Количество консультантов онлайн
 	configs 	: {}				# Параметры чата
+	ip 			: ''
 
 	initialize 	: ->
 		@model.bind 'change:configs' , -> 
 			@configs = @model.get 'configs'
 			console.log @configs
+
+		# Сохраняем печенечный идентификатор пользователя, определен в шаблоне
+		@ip = ip
 
 		console.log 'init view chat'	
 		@updateSystem()
@@ -45,14 +49,23 @@ App.Views.Chat = Backbone.View.extend
 		console.log "Initialize socket"		
 		# Регестрируем
 		@socket 	= io 'http://127.0.0.1:1337'
-		
+		@socket.on 'disconnect' , -> console.error 'ОТКЛЮЧИЛСЯ!'
+		@socket.on 'reconnect'	, => 
+			@socket.emit 'addClient' , ip : ip
+			console.info 'Успешно переподключение к соккету'
+
 		############### Отравеляем запросы #################
-		@socket.emit 'addClient' , cookie_id : cookie_id
+		@socket.emit 'addClient' , ip : ip
 		####################################################
 
 		############### Ставим прослушки сокет-событий ###################
-		@socket.on 'takeCountConsultants'   , (data) => @takeCountConsultants 	data	# Получаем количество консультантов онлайн		
+		@socket.on 'takeCountConsultants'   , (data) => @takeCountConsultants 	data	# Получаем количество консультантов онлайн
+		@socket.on 'chatStatusMessage' , (data) => @takeChatStatusMessage data 			# Получаем статус соощения от сервера для чата
 		##################################################################
+
+	takeChatStatusMessage : (data) ->
+		
+
 
 	# Получаем от ноды количество консультантов онлайн
 	takeCountConsultants : (data) ->

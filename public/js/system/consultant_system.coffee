@@ -26,5 +26,11 @@ App.Views.Chat = Backbone.View.extend
 		# Отправляем запросы
 		@socket.emit 'addConsultant'
 
+		# Получаем запросы
+		@socket.on 'addClient' , (data) => @addClientToList data
+
+	addClientToList : (data) ->
+		console.log 'New client' , data
+
 App.InitModels.Chat = new App.Models.Chat();
 App.InitViews.Chat 	= new App.Views.Chat model : App.InitModels.Chat

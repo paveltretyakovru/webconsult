@@ -23,7 +23,15 @@ App.Views.Chat = Backbone.View.extend({
   },
   initSockets: function() {
     this.socket = io('http://127.0.0.1:1337');
-    return this.socket.emit('addConsultant');
+    this.socket.emit('addConsultant');
+    return this.socket.on('addClient', (function(_this) {
+      return function(data) {
+        return _this.addClientToList(data);
+      };
+    })(this));
+  },
+  addClientToList: function(data) {
+    return console.log('New client', data);
   }
 });
 
