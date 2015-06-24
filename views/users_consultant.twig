@@ -1,11 +1,21 @@
 <h3>Пользователи на сайте</h3>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="users_online_table">
+
 	<thead>
 		<tr>
-		<th>Дата</th>
-		<th>Имя</th>
-		<th>Телефон</th>
-		<th>Сообщение</th>
+			<th>ip</th>
+			<th>Имя</th>
+			<th>Телефон</th>
+			<th>Чат</th>
 		</tr>
 	</thead>
 </table>
+
+<script type="text/template" id="online_user_template">
+	<tr>
+		<td><%= ip %></td>
+		<td><%= name %></td>
+		<td><%= phone %></td>
+		<td><a class="init_single_chat" data-user_ip="<%= ip %>" href="#">Загрузить чат</a></td>
+	</tr>
+</script>
