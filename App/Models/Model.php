@@ -11,6 +11,8 @@ class Model
 	}
 
 	public function selectAll(){
+		$return = [];
+
 		$stmt = $this->app['pdo']->query("SELECT * FROM {$this->table}");
 		while ($row = $stmt->fetch()){
 			$return[] = $row;
