@@ -23,7 +23,8 @@ class ConsultantsController extends Controller
 
 		$tasks 	= $Task->selectAll();
 
-		return $this->app['twig']->render('consultant.twig' , compact('tasks'));
+		//return $this->app['twig']->render('consultant.twig' , compact('tasks'));
+		return $this->app['twig']->render('index.html' , compact('tasks'));
 	}
 	
 	/**
