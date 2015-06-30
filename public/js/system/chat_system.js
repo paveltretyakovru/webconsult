@@ -28,7 +28,6 @@ App.Views.Chat = Backbone.View.extend({
   tagName: 'div',
   template: _.template($('#chat_element_template').html()),
   initialize: function() {
-    console.log('test');
     return this.model.bind('destroy', this.remove, this);
   },
   render: function() {
@@ -39,20 +38,52 @@ App.Views.Chat = Backbone.View.extend({
 
 App.Views.ChatBody = Backbone.View.extend({
   el: '#chat-users',
+  consultant_info: {},
   socket: {},
+  $consultantsGroup: $('#consultants-chat-group'),
+  $clientsGroup: $('#clients-chat-group'),
   initialize: function() {
     console.log('Инициализируем чат');
+    this.consultant_info = consultant_info;
     this.socket = App.Functions.getSocket();
-    this.socket.emit('addConsultant');
+    this.socket.emit('addConsultant', this.consultant_info);
     this.socket.on('addClient', (function(_this) {
       return function(data) {
         return _this.takeNewFromSocket(data);
       };
     })(this));
+    this.socket.on('addConsultant', (function(_this) {
+      return function(data) {
+        return _this.newSocketConsultant(data);
+      };
+    })(this));
     return App.InitCollections.Chats.bind('add', this.addOne, this);
   },
-  addOne: function() {
-    return console.log('add one chat');
+  addOne: function(data) {
+    console.info('Проверка нового элемента', data);
+    console.log('Добавление нового элемента чата', data);
+    if ('type' in data) {
+      switch (data.type) {
+        case 'consultant':
+          console.log('Rendering new consultant');
+          App.InitCollections.Chats.create(data);
+          break;
+        case 'client':
+          return console.log('Rendering new client');
+        default:
+          return console.error('Rendering undefined type chat group');
+      }
+    } else {
+      return console.error('Getined undefined type of chat group');
+    }
+  },
+  takeNewFromSocket: function(data) {
+    return console.log('Получен новый клиент', data);
+  },
+  newSocketConsultant: function(data) {
+    console.log('Получен новый консультант', data);
+    data.type = 'consultant';
+    return this.addOne(data);
   }
 });
 

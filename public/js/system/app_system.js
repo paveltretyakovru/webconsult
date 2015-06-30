@@ -19,7 +19,18 @@ window.App = {
 App.Functions.getSocket = function() {
   if (Object.keys(App.Objects.socket)) {
     console.log('Инициализация сокета');
-    return App.Objects.socket = io(App.Data.sockethost);
+    App.Objects.socket = io(App.Data.sockethost);
+    App.Objects.socket.on('disconnect', function() {
+      return console.error('отключился от соккета!');
+    });
+    return App.Objects.socket.on('reconnect', (function(_this) {
+      return function() {
+        App.Objects.socket.emit('addConsultant', {
+          data: 'some data'
+        });
+        return console.info('Успешно переподключение к соккету');
+      };
+    })(this));
   } else {
     console.log('Возвращаем объект сокета');
     return App.Objects.socket;
