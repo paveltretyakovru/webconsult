@@ -48,7 +48,7 @@ App.Views.Chat = Backbone.View.extend
 	registerSocket : ->
 		console.log "Initialize socket"		
 		# Регестрируем
-		@socket 	= io 'http://127.0.0.1:1337'
+		@socket 	= io 'https://webconsult-node-server-ptretyakov.c9.io'
 		@socket.on 'disconnect' , -> console.error 'ОТКЛЮЧИЛСЯ!'
 		@socket.on 'reconnect'	, => 
 			@socket.emit 'addClient' , ip : ip

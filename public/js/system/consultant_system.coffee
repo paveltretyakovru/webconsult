@@ -1,25 +1,6 @@
-window.App =
-	Models 			: {}
-	Views 			: {}
-	Collections 	: {}
-
-	InitViews 		: {}
-	InitModels		: {}
-	InitCollections	: {}
-
-	Objects 		: {
-		socket : {}
-	}
-	Functions 		: {}
-
-# Функция возвращает объект сокета
-App.Functions.getSocket = ->
-	if Object.keys App.Objects.socket
-		console.log 'Инициализация сокета'
-		App.Objects.socket = io 'http://127.0.0.1:1337'
-	else
-		console.log 'Возвращаем объект сокета'
-		return App.Objects.socket
+###
+	# БЛОК ЛОГИКИ ДЛЯ БАЗЫ ОНЛАЙН СООБЩЕНИЙ
+###
 
 # Модель для онлайн клиента
 App.Models.OnlineClient = Backbone.Model.extend
@@ -36,9 +17,8 @@ App.Models.OnlineClient = Backbone.Model.extend
 
 # Коллекция с онлайн клиентами
 App.Collections.OnlineClients = Backbone.Collection.extend
-	model : App.Models.OnlineClient
-
-	localStorage : 
+	model : App.Models.OnlineClientj
+	
 
 # Инициализируем коллекцию с олнайлн пользователями
 App.InitCollections.OnlineClients = new App.Collections.OnlineClients
@@ -93,4 +73,5 @@ App.Views.OnlineClientsTable = Backbone.View.extend
 		console.log "Через сокет получен новый клиент" , socket_data
 		App.InitCollections.OnlineClients.create socket_data
 
+# Инициализация вида для таблицы оффлайн сообщений
 App.InitViews.OnlineClientsTable = new App.Views.OnlineClientsTable
