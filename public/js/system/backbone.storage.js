@@ -33,7 +33,7 @@ Backbone.sync = function (method, model, options) {
         socket.emit('create', {'signature' : sign, item : model.attributes }); 
         socket.once(e, function (data) {
             model.id = data.id;  
-            console.log(model);                     
+            console.log('Create from ' , model);                     
         });                           
     };              
  

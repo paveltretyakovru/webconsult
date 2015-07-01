@@ -15,16 +15,18 @@ App.Models.Chat = Backbone.Model.extend
 
 		return data
 
-
-# Создаем коллекцию списков чата
-App.Collections.Chats = Backbone.Collection.extend
+# Создаем коллекчию консультантов чата
+App.Collections.Consultants = Backbone.Collection.extend
 	model : App.Models.Chat
-		
-# Инициализируем коллекцию списков чата
-App.InitCollections.Chats = new App.Collections.Chats()
+App.InitCollections.Consultants = new App.Collections.Consultants()
+
+# Создаем коллекцию клиентов чата
+App.Collections.Clients		= Backbone.Collection.extend
+	model : App.Models.Chat
+App.InitCollections.Clients = new App.Collections.Clients()
 
 # Создаем вид для одного элемента чата
-App.Views.Chat = Backbone.View.extend
+App.Views.ChatElement = Backbone.View.extend
 	tagName 	: 'div'
 	template 	: _.template $('#chat_element_template').html()
 	
@@ -35,55 +37,40 @@ App.Views.Chat = Backbone.View.extend
 		@$el.html @.template @model.toJSON()
 		return @
 		
-App.Views.ChatBody = Backbone.View.extend
-	el 				: '#chat-users'
-	consultant_info : {}
-	socket 			: {}
+App.Views.ConsultantsChatGroup = Backbone.View.extend
+	el 				: '#consultants-chat-group'
+	socket 			: {} ,
+	consultant_info : consultant_info
 	
 	$consultantsGroup 	: $('#consultants-chat-group')
-	$clientsGroup		: $('#clients-chat-group')
+	$clientsGroup		: $('#clients-chat-grou p')
 	
 	initialize : ->
 		console.log 'Инициализируем чат'
-		@consultant_info = consultant_info;
 		
 		#  Получаем сокет
 		@socket = App.Functions.getSocket()
 
 		# Отправляем на ноду необходимые вызовы
 		@socket.emit 'addConsultant' , @consultant_info
-
-		# Прослушиваем необходимые события сокета
-		@socket.on 'addClient' , (data) => @takeNewFromSocket data
-		@socket.on 'addConsultant' , (data) => @newSocketConsultant data
 		
+		@socket.on 'addConsultant' 	, (data) -> App.InitCollections.Consultants.create data
+		@socket.on 'addClient'		, @addClient
+		
+		@socket.on 'create' , (data) -> console.log 'test create' , data
 
 		# Обрабатываем события объектов backbone
-		App.InitCollections.Chats.bind 'add' , @addOne , @ 	# Событие добавления клиента в коллекцию
+		App.InitCollections.Consultants.on 'add' 	, @addOneConsultant , @		# Событие добавление консультанта в коллекцию
+		App.InitCollections.Clients.on 	'add' 		, @addOneClient , @			# Событие добавление клиента в коллекцию
 	
-	addOne : (data) ->
-		console.info 'Проверка нового элемента' , data
-		console.log 'Добавление нового элемента чата' , data
-		if 'type' of data
-			 switch data.type
-			 	when 'consultant'
-			 		console.log 'Rendering new consultant'
-			 		App.InitCollections.Chats.create data
-			 		break
-			 	when 'client'
-			 		console.log 'Rendering new client'
-			 	else 
-			 		console.error 'Rendering undefined type chat group'
-		else
-			console.error 'Getined undefined type of chat group'
-	
-	takeNewFromSocket : (data) ->
-		console.log 'Получен новый клиент' , data
+	addOneConsultant : (model , collection , options) ->
+		console.info 'Добавление новго консультанта чат' , model.toJSON()
+		view = new App.Views.ChatElement model : model
+		@$el.append view.render().el
+		#$('#messages-wrapper').html('test');
 		
-	# Добавляем нового консультанта полученно по сокету
-	newSocketConsultant : (data) ->
-		console.log 'Получен новый консультант' , data
-		data.type = 'consultant'
-		@addOne data;
 
-App.InitViews.ChatBody = new App.Views.ChatBody()
+App.InitViews.ConsultantsChatGroup = new App.Views.ConsultantsChatGroup()
+
+# Добавляем текущего консультанта в общий список
+App.InitCollections.Consultants.create consultant_info

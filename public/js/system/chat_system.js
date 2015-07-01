@@ -18,13 +18,19 @@ App.Models.Chat = Backbone.Model.extend({
   }
 });
 
-App.Collections.Chats = Backbone.Collection.extend({
+App.Collections.Consultants = Backbone.Collection.extend({
   model: App.Models.Chat
 });
 
-App.InitCollections.Chats = new App.Collections.Chats();
+App.InitCollections.Consultants = new App.Collections.Consultants();
 
-App.Views.Chat = Backbone.View.extend({
+App.Collections.Clients = Backbone.Collection.extend({
+  model: App.Models.Chat
+});
+
+App.InitCollections.Clients = new App.Collections.Clients();
+
+App.Views.ChatElement = Backbone.View.extend({
   tagName: 'div',
   template: _.template($('#chat_element_template').html()),
   initialize: function() {
@@ -36,55 +42,36 @@ App.Views.Chat = Backbone.View.extend({
   }
 });
 
-App.Views.ChatBody = Backbone.View.extend({
-  el: '#chat-users',
-  consultant_info: {},
+App.Views.ConsultantsChatGroup = Backbone.View.extend({
+  el: '#consultants-chat-group',
   socket: {},
+  consultant_info: consultant_info,
   $consultantsGroup: $('#consultants-chat-group'),
-  $clientsGroup: $('#clients-chat-group'),
+  $clientsGroup: $('#clients-chat-grou p'),
   initialize: function() {
     console.log('Инициализируем чат');
-    this.consultant_info = consultant_info;
     this.socket = App.Functions.getSocket();
     this.socket.emit('addConsultant', this.consultant_info);
-    this.socket.on('addClient', (function(_this) {
-      return function(data) {
-        return _this.takeNewFromSocket(data);
-      };
-    })(this));
-    this.socket.on('addConsultant', (function(_this) {
-      return function(data) {
-        return _this.newSocketConsultant(data);
-      };
-    })(this));
-    return App.InitCollections.Chats.bind('add', this.addOne, this);
+    this.socket.on('addConsultant', function(data) {
+      return App.InitCollections.Consultants.create(data);
+    });
+    this.socket.on('addClient', this.addClient);
+    this.socket.on('create', function(data) {
+      return console.log('test create', data);
+    });
+    App.InitCollections.Consultants.on('add', this.addOneConsultant, this);
+    return App.InitCollections.Clients.on('add', this.addOneClient, this);
   },
-  addOne: function(data) {
-    console.info('Проверка нового элемента', data);
-    console.log('Добавление нового элемента чата', data);
-    if ('type' in data) {
-      switch (data.type) {
-        case 'consultant':
-          console.log('Rendering new consultant');
-          App.InitCollections.Chats.create(data);
-          break;
-        case 'client':
-          return console.log('Rendering new client');
-        default:
-          return console.error('Rendering undefined type chat group');
-      }
-    } else {
-      return console.error('Getined undefined type of chat group');
-    }
-  },
-  takeNewFromSocket: function(data) {
-    return console.log('Получен новый клиент', data);
-  },
-  newSocketConsultant: function(data) {
-    console.log('Получен новый консультант', data);
-    data.type = 'consultant';
-    return this.addOne(data);
+  addOneConsultant: function(model, collection, options) {
+    var view;
+    console.info('Добавление новго консультанта чат', model.toJSON());
+    view = new App.Views.ChatElement({
+      model: model
+    });
+    return this.$el.append(view.render().el);
   }
 });
 
-App.InitViews.ChatBody = new App.Views.ChatBody();
+App.InitViews.ConsultantsChatGroup = new App.Views.ConsultantsChatGroup();
+
+App.InitCollections.Consultants.create(consultant_info);
